@@ -16,11 +16,11 @@ jobs:
       - checkout
       - run:
           name: "Test: Print ROLE_ARN"
-          command: "echo ${ROLE_ARN}"
+          command: ROLE_ARN
           
       - aws-cli/setup:
-          role-arn: ROLE_ARN
-          aws-region: REGION  # Reference the environment variable directly
+          role-arn: "arn:aws:iam::654654311376:role/test_circleci"
+          aws-region: REGION
           role-session-name: "example-session"
 
 
