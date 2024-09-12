@@ -14,9 +14,7 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup:
-          role_arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/CircleCI_OIDC"
-      - aws-ecr/ecr_login:
-          account_id: ${AWS_ACCOUNT_ID}
+          role_arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
           
       # - aws-ecr/build_image:
       #     push_image: false
