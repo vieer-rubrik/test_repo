@@ -14,15 +14,9 @@ jobs:
       - aws-cli/setup:
           role_arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
 
-      - docker/build:
-          image: "654654311376.dkr.ecr.us-east-1.amazonaws.com/test:latest"
-          dockerfile: Dockerfile
-
-      - aws-ecr/login:
-          region: "us-east-1"
-
-      - docker/push:
-          image: 654654311376.dkr.ecr.us-east-1.amazonaws.com/test:latest
+      - aws-ecr/build-and-push-image:
+          repo: "test"
+          tag: "${CIRCLE_SHA1}"
 
 workflows:
   version: 2
