@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@3.1
+  aws-cli: circleci/aws-cli@3.1.5
   aws-ecr: circleci/aws-ecr@7.3.0
   docker: circleci/docker@2.7.0
 
@@ -13,14 +13,14 @@ jobs:
       - checkout
       
       - aws-cli/setup:
-          role-arn: arn:aws:iam::654654311376:role/test
-          role-session-name: circleci-session
-          use-oidc: true
-          aws-region: us-east-1
+          role-arn: ${ROLE_ARN}
+          aws-region: ${REGION}
+          role-session-name: "example-session"
+          session-duration: "1800"
 
       # Login to ECR using the AWS ECR Orb
       - aws-ecr/ecr-login:
-          region: AWS_DEFAULT_REGION
+          region: ${REGION}
 
       # Build Docker image
       - docker/build:
