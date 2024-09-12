@@ -1,28 +1,31 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@3.1.5
+  aws-cli: circleci/aws-cli@4.1.1
+  aws-ecr: circleci/aws-ecr@9.0.1
 
 jobs:
-  build_and_push:
-    machine:
-      image: ubuntu-2004:2023.07.1
+  build-push:
     environment:
-      ROLE_ARN: "arn:aws:iam::654654311376:role/test_circleci" 
-      REGION: "us-east-1"
+      AWS_REGION: us-east-1
+      AWS_ACCOUNT_ID: 654654311376
+    docker:
+      - image: cimg/aws:2022.06
     steps:
       - checkout
-          
-      - aws-cli/install
       - aws-cli/setup:
-          role-arn: "arn:aws:iam::654654311376:role/test_circleci" 
-          aws-region: REGION
-          profile-name: "OIDC-PROFILE"
-          role-session-name: "deployment"
-          session-duration: "1800"
-
+          role_arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/test_circleci"
+      - aws-ecr/ecr_login:
+          account_id: ${AWS_ACCOUNT_ID}
+          
+      # - aws-ecr/build_image:
+      #     push_image: false
+          
+      # - aws-ecr/push_image:
+      #     account_id: ${AWS_ACCOUNT_ID}
+      #     repo: my-repo
+      #     tag: ${CIRCLE_SHA1},latest
 workflows:
-  version: 2
-  build_and_deploy:
+  docker:
     jobs:
-      - build_and_push
+      - build-push
