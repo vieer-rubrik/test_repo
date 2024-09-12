@@ -11,7 +11,10 @@ jobs:
       image: ubuntu-2004:2023.07.1  # Uses a machine executor for native Docker support
     steps:
       - checkout
-      
+      - run:
+          name: "Test: Print ROLE_ARN"
+          command: "echo ${ROLE_ARN}"
+          
       - aws-cli/setup:
           role-arn: ROLE_ARN
           aws-region: REGION
