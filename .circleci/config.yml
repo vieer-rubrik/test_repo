@@ -8,7 +8,10 @@ orbs:
 jobs:
   build_and_push:
     machine:
-      image: ubuntu-2004:2023.07.1  # Uses a machine executor for native Docker support
+      image: ubuntu-2004:2023.07.1
+    environment:
+      ROLE_ARN: "arn:aws:iam::654654311376:role/test_circleci" 
+      REGION: "us-east-1"
     steps:
       - checkout
       - run:
