@@ -19,25 +19,12 @@ jobs:
           command: "echo ${ROLE_ARN}"
           
       - aws-cli/setup:
-          role-arn: ROLE_ARN
-          aws-region: REGION
+          role-arn: "<< pipeline.parameters.ROLE_ARN >>"
+          aws-region: "<< pipeline.parameters.REGION >>"
           role-session-name: "example-session"
-          session-duration: "1800"
 
-      # Login to ECR using the AWS ECR Orb
       - aws-ecr/ecr-login:
-          region: REGION
-
-      # # Build Docker image
-      # - docker/build:
-      #     image: "your-docker-image-name"   # Replace with your image name
-      #     tag: "latest"  # Tag your image; you can also use versioning if needed
-
-      # # Push Docker image to ECR
-      # - aws-ecr/push-image:
-      #     repo: "your-ecr-repo-name"  # Replace with your ECR repo name
-      #     image: "your-docker-image-name"
-      #     tag: "latest"
+          region: "<< pipeline.parameters.REGION >>"
 
 workflows:
   version: 2
