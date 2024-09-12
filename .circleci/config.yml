@@ -3,27 +3,29 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@4.1.1
   aws-ecr: circleci/aws-ecr@9.0.1
+  docker: circleci/docker@2.1.0
 
 jobs:
   build-push:
-    environment:
-      AWS_REGION: us-east-1
-      AWS_ACCOUNT_ID: 654654311376
     docker:
       - image: cimg/aws:2022.06
     steps:
       - checkout
       - aws-cli/setup:
-          role_arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
-          
-      # - aws-ecr/build_image:
-      #     push_image: false
-          
-      # - aws-ecr/push_image:
-      #     account_id: ${AWS_ACCOUNT_ID}
-      #     repo: my-repo
-      #     tag: ${CIRCLE_SHA1},latest
+          role-arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
+
+      - docker/build:
+          image: 654654311376.dkr.ecr.us-east-1.amazonaws.com/test:latest
+          dockerfile: Dockerfile
+
+      - aws-ecr/login:
+          region: "us-east-1"
+
+      - docker/push:
+          image: 654654311376.dkr.ecr.us-east-1.amazonaws.com/test:latest
+
 workflows:
-  docker:
+  version: 2
+  build_and_push:
     jobs:
       - build-push
