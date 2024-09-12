@@ -11,10 +11,7 @@ jobs:
       image: ubuntu-2004:2023.07.1  # Uses a machine executor for native Docker support
     steps:
       - checkout  # Pulls the code from your repository
-
-      # Install Docker
-      - docker/install
-
+s
       - aws-cli/setup:
           role-arn: arn:aws:iam::<your-aws-account-id>:role/<your-iam-role-name>
           role-session-name: circleci-session
