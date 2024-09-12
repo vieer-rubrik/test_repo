@@ -12,13 +12,10 @@ jobs:
       REGION: "us-east-1"
     steps:
       - checkout
-      - run:
-          name: "Test: Print ROLE_ARN"
-          command: ROLE_ARN
           
       - aws-cli/setup:
           role-arn: "arn:aws:iam::654654311376:role/test_circleci" 
-          aws-region: AWS_REGION
+          aws-region: REGION
           profile-name: "OIDC-PROFILE"
           role-session-name: "example-session"
           session-duration: "1800"
