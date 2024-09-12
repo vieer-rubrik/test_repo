@@ -17,9 +17,11 @@ jobs:
           command: ROLE_ARN
           
       - aws-cli/setup:
-          role-arn: "arn:aws:iam::654654311376:role/test_circleci"
-          aws-region: REGION
+          role-arn: "arn:aws:iam::654654311376:role/test_circleci" 
+          aws-region: AWS_REGION
+          profile-name: "OIDC-PROFILE"
           role-session-name: "example-session"
+          session-duration: "1800"
 
 
 workflows:
