@@ -13,13 +13,9 @@ jobs:
       - checkout
       - aws-cli/setup:
           role_arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
-
       - run:
-          name: check credentials
-          command: |
-            aws s3 ls
-
-
+          name: Check S3 credentials
+          command: aws s3 ls
 workflows:
   version: 2
   build_and_push:
