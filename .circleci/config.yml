@@ -23,8 +23,6 @@ jobs:
           aws-region: REGION  # Reference the environment variable directly
           role-session-name: "example-session"
 
-      - aws-ecr/ecr-login:
-          region: "${REGION}"  # Reference the environment variable directly
 
 workflows:
   version: 2
