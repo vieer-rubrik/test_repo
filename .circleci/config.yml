@@ -13,13 +13,13 @@ jobs:
     steps:
       - checkout
           
+      - aws-cli/install
       - aws-cli/setup:
           role-arn: "arn:aws:iam::654654311376:role/test_circleci" 
           aws-region: REGION
           profile-name: "OIDC-PROFILE"
-          role-session-name: "example-session"
+          role-session-name: “deployment-session”
           session-duration: "1800"
-
 
 workflows:
   version: 2
