@@ -15,7 +15,7 @@ jobs:
           role-arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
 
       - docker/build:
-          image: 654654311376.dkr.ecr.us-east-1.amazonaws.com/test:latest
+          image: "654654311376.dkr.ecr.us-east-1.amazonaws.com/test:latest"
           dockerfile: Dockerfile
 
       - aws-ecr/login:
