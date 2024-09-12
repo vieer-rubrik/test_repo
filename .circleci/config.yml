@@ -10,18 +10,16 @@ jobs:
     machine:
       image: ubuntu-2004:2023.07.1  # Uses a machine executor for native Docker support
     steps:
-      - checkout  # Pulls the code from your repository
-s
+      - checkout
+      
       - aws-cli/setup:
-          role-arn: arn:aws:iam::<your-aws-account-id>:role/<your-iam-role-name>
+          role-arn: arn:aws:iam::654654311376:role/test
           role-session-name: circleci-session
           use-oidc: true
-          aws-region: AWS_DEFAULT_REGION
+          aws-region: us-east-1
 
       # Login to ECR using the AWS ECR Orb
       - aws-ecr/ecr-login:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_DEFAULT_REGION
 
       # Build Docker image
