@@ -19,12 +19,12 @@ jobs:
           command: "echo ${ROLE_ARN}"
           
       - aws-cli/setup:
-          role-arn: "<< pipeline.parameters.ROLE_ARN >>"
-          aws-region: "<< pipeline.parameters.REGION >>"
+          role-arn: "${ROLE_ARN}"  # Reference the environment variable directly
+          aws-region: "${REGION}"  # Reference the environment variable directly
           role-session-name: "example-session"
 
       - aws-ecr/ecr-login:
-          region: "<< pipeline.parameters.REGION >>"
+          region: "${REGION}"  # Reference the environment variable directly
 
 workflows:
   version: 2
