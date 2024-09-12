@@ -22,16 +22,16 @@ jobs:
       - aws-ecr/ecr-login:
           region: REGION
 
-      # Build Docker image
-      - docker/build:
-          image: "your-docker-image-name"   # Replace with your image name
-          tag: "latest"  # Tag your image; you can also use versioning if needed
+      # # Build Docker image
+      # - docker/build:
+      #     image: "your-docker-image-name"   # Replace with your image name
+      #     tag: "latest"  # Tag your image; you can also use versioning if needed
 
-      # Push Docker image to ECR
-      - aws-ecr/push-image:
-          repo: "your-ecr-repo-name"  # Replace with your ECR repo name
-          image: "your-docker-image-name"
-          tag: "latest"
+      # # Push Docker image to ECR
+      # - aws-ecr/push-image:
+      #     repo: "your-ecr-repo-name"  # Replace with your ECR repo name
+      #     image: "your-docker-image-name"
+      #     tag: "latest"
 
 workflows:
   version: 2
