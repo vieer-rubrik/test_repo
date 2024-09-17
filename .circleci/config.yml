@@ -6,7 +6,7 @@ orbs:
 jobs:
   build-and-run:
     docker:
-      - image: cimg/base:current # Using the CircleCI base image
+      - image: cimg/base:current
     steps:
       - checkout
 
