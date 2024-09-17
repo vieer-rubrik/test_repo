@@ -1,0 +1,40 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@2.1.0
+
+jobs:
+  build-and-run:
+    docker:
+      - image: cimg/base:current # Using the CircleCI base image
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          version: 20.10.7  # Example version, adjust if needed
+          docker_layer_caching: true  # Optional, speeds up builds
+
+      - run:
+          name: Pull custom image
+          command: docker pull vieerd/das:test
+
+      - run:
+          name: Start Docker container with volume
+          command: |
+            docker run -d --name test_container \
+              -v /var/lib/docker:/var/lib/docker \
+              vieerd/das:test
+
+      - run:
+          name: Check running container
+          command: docker ps
+
+      - run:
+          name: Check Docker logs
+          command: docker logs test_container
+
+workflows:
+  version: 2
+  build_and_run_workflow:
+    jobs:
+      - build-and-run
