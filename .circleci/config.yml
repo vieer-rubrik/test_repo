@@ -12,8 +12,8 @@ jobs:
     steps:
 
       - run:
-        name: Check S3 credentials
-        command: docker ps
+          name: Check S3 credentials
+          command: docker ps
 
         
       # - checkout
