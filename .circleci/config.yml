@@ -17,17 +17,11 @@ jobs:
           command: docker pull nginx
 
       - run:
-          name: Start Docker container with volume
+          name: Build and push
           command: |
-            docker run -d nginx
+            docker build -t test .
+            docker ps
 
-      - run:
-          name: Check running container
-          command: docker ps
-
-      - run:
-          name: Check Docker logs
-          command: docker logs test_container
 
 workflows:
   version: 2
