@@ -16,14 +16,12 @@ jobs:
 
       - run:
           name: Pull custom image
-          command: docker pull vieerd/das:test
+          command: docker pull nginx
 
       - run:
           name: Start Docker container with volume
           command: |
-            docker run -d --name test_container \
-              -v /var/lib/docker:/var/lib/docker \
-              vieerd/das:test
+            docker run -d nginx
 
       - run:
           name: Check running container
