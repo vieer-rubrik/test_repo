@@ -1,30 +1,38 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@4.1.1
-  aws-ecr: circleci/aws-ecr@9.3.2
   docker: circleci/docker@2.1.0
 
 jobs:
-  build-push:
+  build-and-run:
     docker:
-      - image: vieerd/das:test
+      - image: cimg/base:current # Using the CircleCI base image
     steps:
+      - checkout
+
+      - setup_remote_docker:
+          version: 20.10.7  # Example version, adjust if needed
+          docker_layer_caching: true  # Optional, speeds up builds
 
       - run:
-          name: Check S3 credentials
+          name: Pull custom image
+          command: docker pull nginx
+
+      - run:
+          name: Start Docker container with volume
+          command: |
+            docker run -d nginx
+
+      - run:
+          name: Check running container
           command: docker ps
 
-        
-      # - checkout
-      # - aws-cli/setup:
-      #     role_arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
-      #     profile_name: default
-      # - run:
-      #     name: Check S3 credentials
-      #     command: aws s3 ls --region us-east-1
+      - run:
+          name: Check Docker logs
+          command: docker logs test_container
+
 workflows:
   version: 2
-  build_and_push:
+  build_and_run_workflow:
     jobs:
-      - build-push
+      - build-and-run
