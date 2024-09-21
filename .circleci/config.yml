@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup:
-          role_arn: "arn:aws:iam::654654311376:role/CircleCI_OIDC"
+          role_arn: "arn:aws:iam::654654311376:role/CIRCLE_CI_OIDIC"
           profile_name: default
       - run:
           name: Check S3 credentials
