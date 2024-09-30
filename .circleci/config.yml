@@ -4,6 +4,8 @@ jobs:
     docker:
       - image: cimg/base:current
       - image: docker
+        environment:
+          DOCKER_OPTS: "--tlsverify=false"  # Example argument
     resource_class: vieer-rubrik/tester
     steps:
       - run: echo "Hi I'm on a Container Runner!"
