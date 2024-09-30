@@ -12,6 +12,11 @@ jobs:
     resource_class: vieer-rubrik/tester
     steps:
       - run: ls /var/run
+      - run: |
+          apk add --update docker openrc
+          rc-update add docker boot
+      - run: |
+          docker ps
 
 workflows:
   build-workflow:
