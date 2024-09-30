@@ -3,8 +3,7 @@ jobs:
   build:
     docker:
       - image: cimg/base:current
-      - image: docker
-        user: root
+      - image: docker:dind-rootless
       
     resource_class: vieer-rubrik/tester
     steps:
