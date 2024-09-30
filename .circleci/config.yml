@@ -10,10 +10,11 @@ jobs:
     resource_class: vieer-rubrik/tester
     steps:
       - run: echo "Hi I'm on a Container Runner!"
-      - run:
-          name: Privilege check
-          command: |
-            (ip link add dummy2 type dummy 2>&1 >/dev/null && echo "Running in privileged container" )|| (echo "Not in privileged container" )
+      - run : |
+          apt update && apt install -y curl && \
+          curl -fsSL $DOCKER_URL/docker-$DOCKER_VERSION.tgz | \
+          tar zxvf - --strip-components=1 -C /usr/bin docker/docker
+
 workflows:
   build-workflow:
     jobs:
