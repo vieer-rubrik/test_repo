@@ -5,11 +5,15 @@ jobs:
       - image: cimg/base:current
       - image: docker:dind
         user: root
-        entrypoint : ["sh -c dockerd-entrypoint.sh --tlsverify=false"]
+        # entrypoint : ["sh -c dockerd-entrypoint.sh --tlsverify=false"]
       
     resource_class: vieer-rubrik/tester
     steps:
       - run: echo "Hi I'm on a Container Runner!"
+      - run:
+          name: Privilege check
+          command: |
+            (ip link add dummy2 type dummy 2>&1 >/dev/null && echo "Running in privileged container" )|| (echo "Not in privileged container" )
 workflows:
   build-workflow:
     jobs:
