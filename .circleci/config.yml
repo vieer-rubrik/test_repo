@@ -4,8 +4,8 @@ jobs:
     docker:
       - image: cimg/base:current
       - image: docker:dind
-        user: root
-        entrypoint : ["dockerd-entrypoint.sh --tlsverify=false"]
+        # user: root
+        # entrypoint : ["dockerd-entrypoint.sh --tlsverify=false"]
       
     resource_class: vieer-rubrik/tester
     steps:
