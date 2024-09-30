@@ -5,9 +5,6 @@ jobs:
       - image: cimg/base:current
       - image: docker:dind
         command: ["--tlsverify=false"]
-        # user: root
-        # entrypoint : ["dockerd-entrypoint.sh --tlsverify=false"]
-        # entrypoint: ["dockerd-entrypoint.sh --tlsverify=false"]
       
       
     resource_class: vieer-rubrik/tester
@@ -21,6 +18,7 @@ jobs:
           sudo tar zxvf - --strip-components=1 -C /usr/local/bin docker/docker
 
       - run: |
+          sudo chmod +x /var/run/docker.sock
           docker ps
 
 workflows:
