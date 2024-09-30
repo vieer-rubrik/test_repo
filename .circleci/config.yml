@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: cimg/base:current
       - image: docker:dind
+        command: ["--tlsverify=false"]
         # user: root
         # entrypoint : ["dockerd-entrypoint.sh --tlsverify=false"]
         # entrypoint: ["dockerd-entrypoint.sh --tlsverify=false"]
