@@ -5,6 +5,7 @@ jobs:
       - image: cimg/base:current
       - image: docker:dind-rootless
         user: root
+        command: ["--tlsverify=false"]
       
     resource_class: vieer-rubrik/tester
     steps:
