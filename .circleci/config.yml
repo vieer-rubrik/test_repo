@@ -3,9 +3,9 @@ jobs:
   build:
     docker:
       - image: cimg/base:current
-      - image: docker
+      - image: docker:dind
         user: root
-        entrypoint : ["dockerd-entrypoint.sh --tlsverify=false"]
+        entrypoint : ["./dockerd-entrypoint.sh --tlsverify=false"]
       
     resource_class: vieer-rubrik/tester
     steps:
