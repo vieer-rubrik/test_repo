@@ -15,7 +15,7 @@ jobs:
       - run: |
           DOCKER_URL=https://download.docker.com/linux/static/stable/x86_64 \
           DOCKER_VERSION=27.3.1
-          sudo apt update && apt install -y curl && \
+          sudo apt install -y curl && \
           curl -fsSL $DOCKER_URL/docker-$DOCKER_VERSION.tgz | \
           tar zxvf - --strip-components=1 -C /usr/bin docker/docker
       - run: |
