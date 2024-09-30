@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: cimg/base:current
       - image: docker
+        user: root
       
     resource_class: vieer-rubrik/tester
     steps:
