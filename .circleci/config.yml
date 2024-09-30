@@ -10,11 +10,6 @@ jobs:
     resource_class: vieer-rubrik/tester
     steps:
       - run: ls /var/run
-      - run: |
-          sudo groupadd docker
-          sudo usermod -aG docker $USER
-          newgrp docker
-      
           # DOCKER_URL=https://download.docker.com/linux/static/stable/x86_64
           # DOCKER_VERSION=27.3.1
           # sudo mkdir -p /usr/local/bin
@@ -22,8 +17,7 @@ jobs:
           # sudo tar zxvf - --strip-components=1 -C /usr/local/bin docker/docker
 
       - run: |
-          sudo chmod +x /var/run/docker.sock
-          docker ps
+          sudo docker ps
 
 workflows:
   build-workflow:
