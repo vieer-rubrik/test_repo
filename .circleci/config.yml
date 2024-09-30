@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: cimg/base:current
+      - image: docker
     resource_class: vieer-rubrik/tester
     steps:
       - run: echo "Hi I'm on a Container Runner!"
