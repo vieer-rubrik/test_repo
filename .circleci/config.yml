@@ -10,7 +10,10 @@ jobs:
     resource_class: vieer-rubrik/tester
     steps:
       - run: ls /var/run
-      # - run: |
+      - run: |
+          sudo groupadd docker
+          sudo usermod -aG docker $USER
+          newgrp docker
       
           # DOCKER_URL=https://download.docker.com/linux/static/stable/x86_64
           # DOCKER_VERSION=27.3.1
